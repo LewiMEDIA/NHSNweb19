@@ -1,1 +1,975 @@
+<!doctype html>
+<!--[if lt IE 8]>      <html class="no-js no-nav no-init theme-green lt-ie10 lt-ie9 lt-ie8" lang="en-us"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js no-nav no-init theme-green lt-ie10 lt-ie9" lang="en-us"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js no-nav no-init theme-green lt-ie10" lang="en-us"> <![endif]-->
+<!--[if !IE]><!-->
+<html class=" no-nav no-init theme-teal js no-touch video generatedcontent audio placeholder" lang="en-us" style=""><!--<![endif]--><head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>NHSN Ventilator-Associated Event (VAE) Calculator Version 6.0</title>
+<meta name="description" content="CDC - Page with menu-only navigation example description goes here">
+<meta name="keywords" content="keywords go here">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/cdc-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/cdc-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/cdc-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="images/cdc-touch-icon-57x57.png">
+<link rel="shortcut icon" href="images/favicon.ico">
+<meta name="robots" content="index,follow">
+<meta property="cdc:template_version" content="3.0">
+<!--head.html -->
+<link rel="stylesheet" href="css/lib/bootstrap24.css">
+<link rel="stylesheet" href="css/app.css?3.1.12.1">
+<!--[if gt IE 9]><!--><!--<![endif]-->
+<!--[if IE 7]>
+		<link rel="stylesheet" href="/TemplatePackage/3.0/css/lib/font-awesome-ie7.css" />
+	<![endif]-->
+<!--[if lt IE 9]>
+		<link rel="stylesheet" href="/TemplatePackage/3.0/css/ie.css" />
+	<![endif]-->
+<!-- <link rel="stylesheet" media="print" href="css/print.css?3.1.12.1" />  MBR 2/22/16-->
+<script src="js/libs/modernizr-latest.js"></script>
+<script>
+		if(!Date.now){Date.now=function now(){return new Date().getTime()}}
+		var page_timing = page_timing || {};
+		page_timing.page_start = Date.now();
+		function $$(e){if(window.$){e()}else{setTimeout(function(){$$(e)},50)}}
+		// (function(){function e(e,t){var n=e.length;while(n--){if(e[n].indexOf(t)>-1){return e[n]}}return false}var t=e(document.getElementsByTagName("html")[0].className.split(" "),"theme-");if(t){var n=document.createElement("link");n.rel="stylesheet";n.type="text/css";n.media="screen";n.href="/TemplatePackage/3.0/css/themes/"+t+".css";document.getElementsByTagName("head")[0].appendChild(n)}})();
 
+		var settings = {}, addthis = null;
+	</script>
+<meta name="application-name" content="CDC.gov">
+<meta name="msapplication-TileColor" content="#0061aa">
+<meta name="msapplication-square70x70logo" content="images/Win8_tile_70x70.png">
+<meta name="msapplication-square150x150logo" content="images/Win8_tile_150x150.png">
+<meta name="msapplication-wide310x150logo" content="images/Win8_tile_310x150.png">
+<meta name="msapplication-square310x310logo" content="images/Win8_tile_310x310.png">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900,100italic,300italic,400italic,700italic,900italic" rel="stylesheet" type="text/css">
+<!-- Local CSS reference to allow overrides for the page/site -->
+<link rel="stylesheet" href="/TemplatePackage/3.0/local/css/local.css">
+<!--
+			In WCMS templates there is a local SSI for other includes, references,
+			and head content (e.g., JavaScript).
+		-->
+<!--include virtual="/~inc~/localRDAdditionalHeadIncludes.html" -->
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.11.2.custom/jquery-ui.css">
+<script type="text/javascript" src="js/vaeCalcV6.js"></script>
+<link type="text/css" href="css/vaeCalcV5.css" rel="stylesheet">
+<link type="text/css" href="css/print.css" rel="stylesheet" media="print">
+</head>
+<body>
+<!--
+			In WCMS templates there is a local SSI for other content/assets that
+			must appear at the start of the body tag.
+		-->
+<!--include virtual="/~inc~/localRDBodyTop.html" -->
+<!--skipmenuNoNav.html -->
+<div id="skipmenu"><a href="#contentArea" class="skippy">Skip directly to site content</a> </div>
+<div id="wrapper">
+  <header id="header">
+    <div class="container">
+      <!-- header -->
+      <div class="row">
+        <div id="logo" class="span14">
+          <!--logo.html" -->
+          <a href="https://www.cdc.gov"><img src="images/masthead_subpage.svg" alt="CDC. Centers for Disease Control and Prevention. CDC 24/7: Saving Lives. Protecting People." class="hidden-one"><img src="images/masthead_1-col.svg" alt="CDC. Centers for Disease Control and Prevention. CDC 24/7: Saving Lives. Protecting People.™" class="visible-one"></a> </div>
+        <!-- search viewport 3/4 -->
+        <div id="searchArea" class="span10 hidden-one hidden-two hidden-three hidden-four">
+          <!--/search.html" -->
+          <!--/localSearch.html" -->
+          <div class="a2z-button pull-right hidden-one hidden-two hidden-three hidden-four"><a href="#" id="azTab">CDC A-Z Index <span class="icon-angle-down"></span></a></div>
+        </div>
+        <!-- /search viewport 3/4 -->
+      </div>
+      <!--/menu.html" -->
+      <div class="a2z-bar hide">
+        <!--a2z.html" -->
+      </div>
+      <!-- search viewport 1/2 -->
+      <div id="searchArea-two-column" class="span24 searchbar hide hidden-three hidden-four">
+        <!--#include virtual="/TemplatePackage/3.0/includes/search.html" -->
+        <!--include virtual="/TemplatePackage/3.0/modules/local/includes/localSearch.html" -->
+      </div>
+      <!-- /search viewport 1/2 -->
+      <!--#include virtual="/TemplatePackage/3.0/includes/emergency.html" -->
+      <!-- /header -->
+      <div class="row">&nbsp;</div>
+      <div class="titlebar">
+        <!-- When this template is used for a topic home page then the following should be an <h1> tag. -->
+        <h2><a href="https://www.cdc.gov/nhsn/index.html">National Healthcare Safety Network (NHSN)</a></h2>
+      </div>
+      <!--#include virtual="/TemplatePackage/3.0/includes/noscript.html" -->
+    </div>
+  </header>
+  <div class="container">
+    <div id="content">
+      <div class="row">
+        <div class="breadcrumbs hidden-one span24">
+          <!--/breadcrumb.html" -->
+          <div class="bread-crumb hidden-one"><span class="hidden-one"><a class="no-link" href="https://www.cdc.gov/">CDC</a></span><span class="lt hidden-one"></span><span class="hidden-one"><a class="no-link" href="https://www.cdc.gov/nhsn/index.html">NHSN</a></span><span class="lt hidden-one"></span><span><a class="no-link" href="https://www.cdc.gov/nhsn/enrolled-facilities/index.html">Materials for Enrolled Facilities</a></span></div>
+        </div>
+        <div class="span24 pagetitle" role="banner">
+          <!-- div class='syndicate' -->
+          <!-- uncomment div for content syndication-->
+          <!-- When this template is used for a topic home page then the following should be an <h2> tag. -->
+          <h1>NHSN Ventilator-Associated Event (VAE) Calculator Ver. 6.0</h1>
+          <!--/div-->
+          <!-- uncomment div for content syndication-->
+        </div>
+        <div id="share-bar" class="span24 hide">
+          <div class="socialmediabar">
+            <div class="row">
+              <div class="hidden-one pull-right">
+                <!--BEGIN PAGE OPTIONS - FOR DEMO PURPOSES ONLY - REMOVE INCLUDES BEFORE TEMPLATE USE. The markup in this region for page format & languages will be generated by the CMS via editorial options. -->
+                <!--include virtual="/TemplatePackage/3.0/local/includes/pageOptionsLanguages.html" -->
+                <!--include virtual="/TemplatePackage/3.0/local/includes/pageOptionsFormat.html" -->
+                <!-- END PAGE OPTIONS -->
+              </div>
+              <div class="span9">
+                <!--socialMediaShare.html" -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- body -->
+        <div id="body" class="span24" role="main">
+          <div id="contentArea">
+            <!--  ***********************
+HTML page for VAE Calculator.
+Barry Rhodes, Ph.D.
+Development Team Lead
+Division of Healthcare Quality Promotion
+NCEZID, CDC
+brhodes@cdc.gov
+
+
+Copyright 2014 Barry Rhodes
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+Questions or comments should be directed to me at the address above.
+
+Barry
+
+
+************************** -->
+            <!-- Want this div to "shrink wrap" it containing divs.  The content is dynamic and the width and height changes with user input.  -->
+
+				<div class="module-typeG">
+            <div id="bigDiv">
+              <!--<div id="titleDiv">
+<H1> Ventilator-Associated Event (VAE) Calculator Ver. 3.0</H1></div>-->
+
+
+                <p id="msgid" style="display: block;"><p>Welcome to the Ventilator-Associated Event Calculator. Version 6.0 operates based 	upon the currently posted VAE protocol. It is strongly encouraged that you read and study the <a href="http://www.cdc.gov/nhsn/acute-care-hospital/vae/index.html" target="_blank">VAE protocol</a>. 	</p><ul>	<li>The calculator recognizes PEEP values ≤ 5 and corrects entries according to the VAE protocol prior to making a VAC determination.</li>	<li>For periods of time where a patient is on APRV or a related type of mechanical ventilation for a full calendar day, a daily minimum PEEP value should not be entered into the calculator (i.e., do not enter zero)  </li> 	<li>The calculator finds multiple VAEs per patient as long as they conform to the 14 day rule.  </li> 	</ul><p></p> 	<p>To get started, <span class="emphasis">enter a date below that corresponds to the first day the patient was placed on mechanical  	ventilation during the mechanical ventilation episode of interest.</span> You may type in a date or use the popup 	calendar when it appears. You may only enter dates within the past year. If the patient has been on mechanical 	ventilation for more than one year during the current mechanical ventilation episode, choose a start date 	that is more recent but is at least 7 days before the period of interest.<span id="more" ;="" style="color:blue;"> more...</span> </p><p id="moreText" style="display: none;"> 	The calculator runs locally on your machine so no data are reported anywhere. Feel free to enter 	or change as much data as you like. If you don't understand something there are several mechanisms for getting 	help. Most of the buttons and table headings will give an expanded description if you hover your mouse over the 	item in question. Also the explain button will pop up an explanation of the reasoning behind the calculator. The	explanation box is movable as are all the popup windows. That allows you to open one up and drag it to the side	as you work. The explanation will automatically update itself as you work through the protocol.</p>	<span id="less" ;="" style="color: blue; display: none;"> less...</span> </p>
+
+              </div>
+            <!-- End bigDiv -->
+            </div>
+            <div>
+              <div id="workSpace">
+              <div id="datePickerDiv" style="text-align: center;"> <label for="datePicker">Mechanical Ventilation
+                Start Date: </label> &nbsp;
+                <input id="datePicker" type="text" readonly="" class="hasDatepicker"><img class="ui-datepicker-trigger" src="images/calendar.png" alt="Set Admit Date" title="Set Admit Date">
+                &nbsp;&nbsp;&nbsp;(mm/dd/yyyy)
+                <!--<br/><br/>
+                <p id="regButtons" style="text-align:center;">
+                      <button title="Click here to start over." onClick="" id="startOver" >Start Over</button>
+                      <button title="Click here to continue."id="nextPageID">Next</button>
+
+            	</p>-->
+                </div>
+
+                <div id="buttonDiv" style="margin: 0px auto; text-align: center;">
+                  <button title="Click this button to calculate the VAC." class="calcVAC" style="display: none;">Calculate VAC</button>
+                  <button title="Click here to start over." class="reset" style="display: none;">Start Over</button>
+                  <button title="Click this button to move on the the IVAC calculator" id="IVAC" style="display: none;">Go to IVAC</button>
+                  <button title="Click this button to calcute IVAC" class="IVACCalc" style="display: none;">Calculate IVAC</button>
+                  <button title="Click this button for an explanation of the resoning" id="explain" style="display: none;">Explain...</button>
+                  <button title="Click this button to move on to the PVAP determination" id="PVAP" style="display: none;">Go to PVAP</button>
+                </div>
+
+                <table id="theTable" style="display: none;">
+                  <tbody>
+                    <tr>
+                      <th scope="col" style="vertical-align: top;">
+                        <span title="Days the patient was on mechanical ventilation.  Day 1 is the first day the patient was intubated.">
+                          MV Day
+                        </span>
+                      </th>
+                      <th scope="col" style="vertical-align: top;">
+                        Date
+                      </th>
+                      <th scope="col" class="peepHeader" style="vertical-align: top;">
+                        <button title="Click this button to hide PEEP values." id="hidePeepCol" style="font-family: monospace; display: none;">
+                          Hide...
+                        </button>
+                        <span title="Positive End-Expiratory Pressure - Values typically  range from 0 to 15.">
+                          Min. PEEP<br>(cmH<sub>2</sub>O)
+                        </span>
+                      </th>
+                      <th scope="col" class="fio2Header" style="vertical-align: top;">
+                        <button title="Click this button to hide FiO2 values." id="hideFio2Col" style="font-family: monospace; display: none;">
+                          Hide...
+                        </button>
+                        <span title="Fraction of Inspired Oxygen">
+                          Min. FiO<sub>2</sub><br>(21 - 100)
+                        </span>
+                      </th>
+                      <th scope="col" class="vaeHeader" style="vertical-align: top;">
+                        <span title="If a ventilator associated event is determined, it will show up in this column.">
+                          VAE&nbsp;
+                        </span>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+
+              	<div class="" id="legendTable" style="display: none;">
+                	<div class="" style="background: none; vertical-align: top;">Legend: </div>
+                    <div class="" style="background: navajowhite; vertical-align: top;">† - VAE Window </div>
+                      <div class="" style="background: yellow; vertical-align: top;">‡ - VAE Date</div>
+                      <div class="" style="background: gray; vertical-align: top;">¶ - Qualifying
+                        Antimicrobial Day (QAD) </div>
+
+                </div>
+                <!--<TABLE id="legendTable" >
+                  <TBODY>
+                    <TR>
+                      <TD style="background: none; vertical-align: top;">Legend: </TD>
+                      <TD style="background: navajowhite; vertical-align: top;"> VAE Window </TD>
+                      <TD style="background: khaki; vertical-align: top;"> VAE Date</TD>
+                      <TD style="background: lightgray; vertical-align: top;"> Qualifying
+                        Antimicrobial Day (QAD)</TD>-->
+                      <!-- <td style="vertical-align:top; background:LightGray; ">VAE Window</td> -->
+                    <!--  <TD style="background: gray; vertical-align: top;"> Cumulative QAD </TD>
+                    </TR>
+                  </TBODY>
+                </TABLE>-->
+
+              <p id="peepLegend" style="display: none;">* All values of PEEP less than 5 cmH<sub>2</sub>O are
+                considered to be 5 cmH<sub>2</sub>O for purposes of the VAC definition.  So for
+                PEEP values entered as less than or equal to 5 cmH<sub>2</sub>O, an increase in
+                the daily minimum PEEP to at least 8 cmH<sub>2</sub>, sustained for 2 or more
+                calendar days, is required to meet the VAC definition. </p>
+              <div style="margin:0 auto; text-align:center;">
+                <!--<div id="buttonDivAtBottom" style="display: none;">
+                  <button title="Click this button to calculate the VAC." class="calcVAC">Calculate VAC</button>
+                  <button title="Click here to start over." class="reset">Start Over</button>
+                </div>-->
+              </div>
+              </div>
+              <p>
+                </p><div style="margin:0 auto; text-align:center;">
+                <hr>
+                  <button title="printScreen" id="myPrint">Print</button>
+                  <button title="Close Window" id="closeWindow" onclick="self.close();">Close</button>
+                </div>
+              <p></p>
+            </div>
+            <div id="explainBox">
+              <button title="Close" class="closeExplainBox" style="float: right;">X</button>
+              <p id="msg" style="color: rgb(88, 88, 88); font-family: Verdana, Geneva, sans-serif; font-size: 12px;">Message Box Error! </p>
+              <div style="margin:0 auto; text-align:center;">
+                <button title="Close It" class="closeExplainBox">OK</button>
+                <br>
+                <p style="color: rgb(88, 88, 88); font-family: Verdana, Geneva, sans-serif; font-size: 10px;">(Hint:
+                  this box is movable by dragging with your mouse.  If you move it to one side and
+                  leave it open, the explanation will automatically update itself as things
+                  change.) </p>
+              </div>
+            </div>
+            <div id="printBox"></div>
+            <div id="vapDiv">
+              <p id="vapTitle"></p>
+              <p id="vapBody">
+                <!-- Primary table for VAP determination -->
+              </p><table id="table1">
+                <tbody>
+                  <tr>
+                    <th scope="col">Question</th>
+                    <th scope="col"> Yes</th>
+                  </tr>
+                  <tr class="vapRow1">
+                    <td class="pvapCondition"> Criterion 1. Positive culture of one of the
+                      following (without requirement for purulent respiratory secretions):
+                      <ul>
+                        <li>Endotracheal aspirate ≥ 10<sup>5</sup> cfu/ml*</li>
+                        <li>Bronchoalveolar lavage ≥ 10<sup>4</sup> cfu/ml* </li>
+                        <li>Lung tissue ≥ 10<sup>4</sup> cfu/ml*</li>
+                        <li>Protected specimen brush ≥ 10<sup>3</sup> cfu/ml*</li>
+                      </ul>
+                      *or
+                      corresponding semi-quantitative result </td>
+                    <td class="pVap" id="purulentInput"><input tabindex="1" class="cb2" type="checkbox" aria-label="Criterion 1">
+                  </td></tr>
+                  <!--<tr> <td style="text-align: center" colspan="2">OR</td></tr>-->
+                  <tr class="vapRow1">
+                    <td class="pvapCondition"> Criterion 2. Positive culture of one of
+                      the following (qualitative or quantitative/semi-quantitative culture
+                      without sufficient growth to meet Criterion 1).
+                      <ul>
+                        <li>Sputum</li>
+                        <li>Endotracheal aspirate</li>
+                        <li>Bronchoalveolar lavage</li>
+                        <li>Lung tissue</li>
+                        <li>Protected specimen brush</li>
+                      </ul>
+                      <b>AND</b>
+                      <p>Evidence of purulent respiratory secretions (defined as secretions from
+                        lungs, bronchi or trachea that contain ≥ 25 neutrophils and ≤ 10 squamous
+                        epithelial cells). </p></td>
+                    <td class="pVap"><input tabindex="1" class="cb2" type="checkbox" aria-label="Criterion 2">
+                  </td></tr>
+                  <!--<tr> <td colspan="2" style="text-align: center" >OR</td></tr>-->
+                  <tr class="vapRow1">
+                    <td class="pvapCondition"> Criterion 3. One of the following
+                      positive tests (as outlined in the protocol):
+                      <ul>
+                        <li>Pleural fluid culture</li>
+                        <li>Lung histopathology</li>
+                        <li>Diagnostic test for <i>Legionella</i> species</li>
+                        <li>Diagnostic test for influenza virus, respiratory syncytial virus,
+                          adenovirus, parainfluenza virus, rhinovirus, human metapneumovirus or
+                          coronavirus. </li>
+                      </ul></td>
+                    <td class="pVap"><input tabindex="1" class="cb2" type="checkbox" aria-label="Criterion 3">
+                  </td></tr>
+                </tbody>
+              </table>
+              <br>
+              <div style="margin:0 auto; text-align:center;">
+                <button title="Click this button to calculate Possible VAP." id="calcPVAP" style="display: none;">Calculate
+                PVAP</button>
+                <button title="Next IVAC Candidate" id="nextIVAC" style="display: none;">Next</button>
+                <button title="Cancel" id="cancelPVAP" style="display: none;">Close</button>
+                <br>
+              </div>
+              <p></p>
+            </div>
+            <div id="content-secondary">
+              <!-- begin editable -->
+              <!--  // This area is optional
+									// All content in the Right Column (except for Page Option links and GovD) will be moved to the Persistent Content Area upon migration
+									-->
+              <!-- /end editable -->
+            </div>
+            <!-- /end #content-secondary -->
+          </div>
+          <!-- /end #contentArea -->
+        </div>
+        <!-- /end #body -->
+      </div>
+      <!-- left nav included after content on pages where it doesn't display -->
+      <nav id="left" class="hidden-one hidden-two hidden-three hidden-four">
+        <!--#include virtual="/TemplatePackage/3.0/local/includes/leftNav.html" -->
+      </nav>
+      <div class="row">
+        <div class="span24 visible-one">
+          <!--BEGIN PAGE OPTIONS - FOR DEMO PURPOSES ONLY - REMOVE INCLUDES BEFORE TEMPLATE USE. The markup in this region for page format & languages will be generated by the CMS via editorial options. -->
+          <!--include virtual="/TemplatePackage/3.0/local/includes/pageOptionsFormatBottom.html" -->
+          <!--include virtual="/TemplatePackage/3.0/local/includes/pageOptionsLanguagesBottom.html" -->
+          <!-- END PAGE OPTIONS -->
+        </div>
+      </div>
+
+      <!-- date stamp -->
+      <div id="datestamp" class="row" itemscope="itemscope" itemtype="https://schema.org/WebPage">
+        <div class="span24">
+          <ul>
+            <li class="last-reviewed">Page last reviewed:<span itemprop="lastReviewed">February 5, 2019</span></li>
+            <li class="last-updated">Page last updated:<span itemprop="dateModified">February 5, 2019</span></li>
+            <li class="content-source">Content source:
+              <ul>
+                <!--DateStamp-->
+                <li itemprop="sourceOrganization" itemscope="itemscope" itemtype="https://schema.org/Organization"> <a href="https://www.cdc.gov/" itemprop="url">Centers for Disease Control and Prevention</a>,&nbsp; </li>
+                <!--contentSource.html -->
+                <li itemprop="sourceOrganization" itemscope="itemscope" itemtype="https://schema.org/Organization"><a href="https://www.cdc.gov/" itemprop="url">Centers for Disease Control and Prevention</a><br>
+                  <a href="https://www.cdc.gov/ncezid/dw-index.html">National Center for Emerging and Zoonotic Infectious Diseases (NCEZID)</a><br>
+                  <a href="https://www.cdc.gov/ncezid/dhqp/index.html">Division of Healthcare Quality Promotion (DHQP)</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /end #content -->
+  </div>
+  <!-- / end .container -->
+  <!-- footer -->
+  <footer class="cdcSlimFooter" id="footer">
+    <!--<DIV class="socialMedia">
+      <DIV class="container">
+
+      </DIV>
+    </DIV>-->
+    <div class="container" style="width:auto;">
+      <div class="cdcLinks">
+        <div class="container">
+          <ul>
+            <li>
+              <nav>
+                <!--<H6 class="hidden-four hidden-three hidden-two hidden-one">ABOUT <SPAN class="icon-plus visible-one pull-right"></SPAN></H6>-->
+                <ul class="">
+                  <li><a href="https://www.cdc.gov/about/default.htm">About CDC</a></li>
+                  <li><a href="https://jobs.cdc.gov/">Jobs</a></li>
+                  <li><a href="https://www.cdc.gov/funding/">Funding</a></li>
+                </ul>
+              </nav>
+            </li>
+            <li>
+              <nav>
+                <!--<H6 class="hidden-four hidden-three hidden-two hidden-one">LEGAL <SPAN class="icon-plus visible-one pull-right"></SPAN></H6>-->
+                <ul class="">
+                  <li><a href="https://www.cdc.gov/Other/policies.html">Policies</a></li>
+                  <li><a href="https://www.cdc.gov/Other/privacy.html">Privacy</a></li>
+                  <li><a href="https://www.cdc.gov/od/foia/">FOIA</a></li>
+                  <li><a href="https://www.cdc.gov/eeo/nofearact/index.htm">No Fear Act</a></li>
+                  <li><a class="no-link" href="https://oig.hhs.gov/">OIG</a></li>
+                </ul>
+              </nav>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="cdcContact">
+        <div class="container">
+          <ul>
+            <li class="local-contact">
+              <section>
+                <address class="address" itemtype="https://www.schema.org/Organization" itemscope="itemscope">
+                    <span class="value" itemtype="https://www.schema.org/PostalAddress" itemscope="itemscope" itemprop="address">
+                    <span itemprop="streetAddress">1600 Clifton Road</span>
+                    <span itemprop="addressLocality">Atlanta</span>,
+                    <span itemprop="addressRegion">GA</span> <span itemprop="postalCode">30329-4027</span>
+                    <span itemprop="addressCountry">USA</span> </span><br>
+                    <span class="value" itemprop="telephone">800-CDC-INFO (800-232-4636)</span>,
+                    <span class="value" itemprop="telephone">TTY: 888-232-6348</span><br>
+                    <span class="value" itemtype="https://www.schema.org/ContactPoint" itemscope="itemscope" itemprop="contactPoint">
+                        <span itemprop="url"><a class=" default no-link" href="https://wwwn.cdc.gov/dcs/RequestForm.aspx">Email CDC-INFO</a></span> </span>
+                </address>
+              </section>
+            </li>
+            <li class="contact">
+              <section>
+                <address class="address" itemtype="https://www.schema.org/Organization" itemscope="itemscope">
+                    <span class="value" itemtype="https://www.schema.org/ContactPoint" itemscope="itemscope" itemprop="contactPoint">
+                        <span itemprop="url"><a class="no-link" href="https://www.hhs.gov/">U.S. Department of Health &amp; Human Services</a></span> </span><br>
+                    <span class="value" itemtype="https://www.schema.org/ContactPoint" itemscope="itemscope" itemprop="contactPoint">
+                    <span itemprop="url"><a class="no-link" href="https://www.hhs.gov/open/">HHS/Open</a></span> </span><br>
+                    <span class="value" itemtype="https://www.schema.org/ContactPoint" itemscope="itemscope" itemprop="contactPoint">
+                        <span itemprop="url"><a class="no-link" href="https://www.usa.gov/">USA.gov</a></span> </span>
+                </address>
+              </section>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /#footer -->
+  <div id="totop" class="off visible-one">TOP</div>
+</div>
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div></body></html>
+
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>NHSN Ventilator-Associated Event (VAE) Calculator Version 6.0</title>
+<meta name="description" content="CDC - Page with menu-only navigation example description goes here">
+<meta name="keywords" content="keywords go here">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/cdc-touch-icon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/cdc-touch-icon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/cdc-touch-icon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="images/cdc-touch-icon-57x57.png">
+<link rel="shortcut icon" href="images/favicon.ico">
+<meta name="robots" content="index,follow">
+<meta property="cdc:template_version" content="3.0">
+<!--head.html -->
+<link rel="stylesheet" href="css/lib/bootstrap24.css">
+<link rel="stylesheet" href="css/app.css?3.1.12.1">
+<!--[if gt IE 9]><!--><!--<![endif]-->
+<!--[if IE 7]>
+		<link rel="stylesheet" href="/TemplatePackage/3.0/css/lib/font-awesome-ie7.css" />
+	<![endif]-->
+<!--[if lt IE 9]>
+		<link rel="stylesheet" href="/TemplatePackage/3.0/css/ie.css" />
+	<![endif]-->
+<!-- <link rel="stylesheet" media="print" href="css/print.css?3.1.12.1" />  MBR 2/22/16-->
+<script src="js/libs/modernizr-latest.js"></script>
+<script>
+		if(!Date.now){Date.now=function now(){return new Date().getTime()}}
+		var page_timing = page_timing || {};
+		page_timing.page_start = Date.now();
+		function $$(e){if(window.$){e()}else{setTimeout(function(){$$(e)},50)}}
+		// (function(){function e(e,t){var n=e.length;while(n--){if(e[n].indexOf(t)>-1){return e[n]}}return false}var t=e(document.getElementsByTagName("html")[0].className.split(" "),"theme-");if(t){var n=document.createElement("link");n.rel="stylesheet";n.type="text/css";n.media="screen";n.href="/TemplatePackage/3.0/css/themes/"+t+".css";document.getElementsByTagName("head")[0].appendChild(n)}})();
+
+		var settings = {}, addthis = null;
+	</script>
+<meta name="application-name" content="CDC.gov">
+<meta name="msapplication-TileColor" content="#0061aa">
+<meta name="msapplication-square70x70logo" content="images/Win8_tile_70x70.png">
+<meta name="msapplication-square150x150logo" content="images/Win8_tile_150x150.png">
+<meta name="msapplication-wide310x150logo" content="images/Win8_tile_310x150.png">
+<meta name="msapplication-square310x310logo" content="images/Win8_tile_310x310.png">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900,100italic,300italic,400italic,700italic,900italic" rel="stylesheet" type="text/css">
+<!-- Local CSS reference to allow overrides for the page/site -->
+<link rel="stylesheet" href="/TemplatePackage/3.0/local/css/local.css">
+<!--
+			In WCMS templates there is a local SSI for other includes, references,
+			and head content (e.g., JavaScript).
+		-->
+<!--include virtual="/~inc~/localRDAdditionalHeadIncludes.html" -->
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.11.2.custom/jquery-ui.css">
+<script type="text/javascript" src="js/vaeCalcV6.js"></script>
+<link type="text/css" href="css/vaeCalcV5.css" rel="stylesheet">
+<link type="text/css" href="css/print.css" rel="stylesheet" media="print">
+</head>
+<body>
+<!--
+			In WCMS templates there is a local SSI for other content/assets that
+			must appear at the start of the body tag.
+		-->
+<!--include virtual="/~inc~/localRDBodyTop.html" -->
+<!--skipmenuNoNav.html -->
+<div id="skipmenu"><a href="#contentArea" class="skippy">Skip directly to site content</a> </div>
+<div id="wrapper">
+  <header id="header">
+    <div class="container">
+      <!-- header -->
+      <div class="row">
+        <div id="logo" class="span14">
+          <!--logo.html" -->
+          <a href="https://www.cdc.gov"><img src="images/masthead_subpage.svg" alt="CDC. Centers for Disease Control and Prevention. CDC 24/7: Saving Lives. Protecting People." class="hidden-one"><img src="images/masthead_1-col.svg" alt="CDC. Centers for Disease Control and Prevention. CDC 24/7: Saving Lives. Protecting People.™" class="visible-one"></a> </div>
+        <!-- search viewport 3/4 -->
+        <div id="searchArea" class="span10 hidden-one hidden-two hidden-three hidden-four">
+          <!--/search.html" -->
+          <!--/localSearch.html" -->
+          <div class="a2z-button pull-right hidden-one hidden-two hidden-three hidden-four"><a href="#" id="azTab">CDC A-Z Index <span class="icon-angle-down"></span></a></div>
+        </div>
+        <!-- /search viewport 3/4 -->
+      </div>
+      <!--/menu.html" -->
+      <div class="a2z-bar hide">
+        <!--a2z.html" -->
+      </div>
+      <!-- search viewport 1/2 -->
+      <div id="searchArea-two-column" class="span24 searchbar hide hidden-three hidden-four">
+        <!--#include virtual="/TemplatePackage/3.0/includes/search.html" -->
+        <!--include virtual="/TemplatePackage/3.0/modules/local/includes/localSearch.html" -->
+      </div>
+      <!-- /search viewport 1/2 -->
+      <!--#include virtual="/TemplatePackage/3.0/includes/emergency.html" -->
+      <!-- /header -->
+      <div class="row">&nbsp;</div>
+      <div class="titlebar">
+        <!-- When this template is used for a topic home page then the following should be an <h1> tag. -->
+        <h2><a href="https://www.cdc.gov/nhsn/index.html">National Healthcare Safety Network (NHSN)</a></h2>
+      </div>
+      <!--#include virtual="/TemplatePackage/3.0/includes/noscript.html" -->
+    </div>
+  </header>
+  <div class="container">
+    <div id="content">
+      <div class="row">
+        <div class="breadcrumbs hidden-one span24">
+          <!--/breadcrumb.html" -->
+          <div class="bread-crumb hidden-one"><span class="hidden-one"><a class="no-link" href="https://www.cdc.gov/">CDC</a></span><span class="lt hidden-one"></span><span class="hidden-one"><a class="no-link" href="https://www.cdc.gov/nhsn/index.html">NHSN</a></span><span class="lt hidden-one"></span><span><a class="no-link" href="https://www.cdc.gov/nhsn/enrolled-facilities/index.html">Materials for Enrolled Facilities</a></span></div>
+        </div>
+        <div class="span24 pagetitle" role="banner">
+          <!-- div class='syndicate' -->
+          <!-- uncomment div for content syndication-->
+          <!-- When this template is used for a topic home page then the following should be an <h2> tag. -->
+          <h1>NHSN Ventilator-Associated Event (VAE) Calculator Ver. 6.0</h1>
+          <!--/div-->
+          <!-- uncomment div for content syndication-->
+        </div>
+        <div id="share-bar" class="span24 hide">
+          <div class="socialmediabar">
+            <div class="row">
+              <div class="hidden-one pull-right">
+                <!--BEGIN PAGE OPTIONS - FOR DEMO PURPOSES ONLY - REMOVE INCLUDES BEFORE TEMPLATE USE. The markup in this region for page format & languages will be generated by the CMS via editorial options. -->
+                <!--include virtual="/TemplatePackage/3.0/local/includes/pageOptionsLanguages.html" -->
+                <!--include virtual="/TemplatePackage/3.0/local/includes/pageOptionsFormat.html" -->
+                <!-- END PAGE OPTIONS -->
+              </div>
+              <div class="span9">
+                <!--socialMediaShare.html" -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- body -->
+        <div id="body" class="span24" role="main">
+          <div id="contentArea">
+            <!--  ***********************
+HTML page for VAE Calculator.
+Barry Rhodes, Ph.D.
+Development Team Lead
+Division of Healthcare Quality Promotion
+NCEZID, CDC
+brhodes@cdc.gov
+
+
+Copyright 2014 Barry Rhodes
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+Questions or comments should be directed to me at the address above.
+
+Barry
+
+
+************************** -->
+            <!-- Want this div to "shrink wrap" it containing divs.  The content is dynamic and the width and height changes with user input.  -->
+
+				<div class="module-typeG">
+            <div id="bigDiv">
+              <!--<div id="titleDiv">
+<H1> Ventilator-Associated Event (VAE) Calculator Ver. 3.0</H1></div>-->
+
+
+                <p id="msgid" style="display: block;"><p>Welcome to the Ventilator-Associated Event Calculator. Version 6.0 operates based 	upon the currently posted VAE protocol. It is strongly encouraged that you read and study the <a href="http://www.cdc.gov/nhsn/acute-care-hospital/vae/index.html" target="_blank">VAE protocol</a>. 	</p><ul>	<li>The calculator recognizes PEEP values ≤ 5 and corrects entries according to the VAE protocol prior to making a VAC determination.</li>	<li>For periods of time where a patient is on APRV or a related type of mechanical ventilation for a full calendar day, a daily minimum PEEP value should not be entered into the calculator (i.e., do not enter zero)  </li> 	<li>The calculator finds multiple VAEs per patient as long as they conform to the 14 day rule.  </li> 	</ul><p></p> 	<p>To get started, <span class="emphasis">enter a date below that corresponds to the first day the patient was placed on mechanical  	ventilation during the mechanical ventilation episode of interest.</span> You may type in a date or use the popup 	calendar when it appears. You may only enter dates within the past year. If the patient has been on mechanical 	ventilation for more than one year during the current mechanical ventilation episode, choose a start date 	that is more recent but is at least 7 days before the period of interest.<span id="more" ;="" style="color: blue; background-color: rgb(255, 255, 255);"> more...</span> </p><p id="moreText" style="display: none;"> 	The calculator runs locally on your machine so no data are reported anywhere. Feel free to enter 	or change as much data as you like. If you don't understand something there are several mechanisms for getting 	help. Most of the buttons and table headings will give an expanded description if you hover your mouse over the 	item in question. Also the explain button will pop up an explanation of the reasoning behind the calculator. The	explanation box is movable as are all the popup windows. That allows you to open one up and drag it to the side	as you work. The explanation will automatically update itself as you work through the protocol.</p>	<span id="less" ;="" style="color: blue; display: none;"> less...</span> </p>
+
+              </div>
+            <!-- End bigDiv -->
+            </div>
+            <div>
+              <div id="workSpace">
+              <div id="datePickerDiv" style="text-align: center;"> <label for="datePicker">Mechanical Ventilation
+                Start Date: </label> &nbsp;
+                <input id="datePicker" type="text" readonly="" class="hasDatepicker"><img class="ui-datepicker-trigger" src="images/calendar.png" alt="Set Admit Date" title="Set Admit Date">
+                &nbsp;&nbsp;&nbsp;(mm/dd/yyyy)
+                <!--<br/><br/>
+                <p id="regButtons" style="text-align:center;">
+                      <button title="Click here to start over." onClick="" id="startOver" >Start Over</button>
+                      <button title="Click here to continue."id="nextPageID">Next</button>
+
+            	</p>-->
+                </div>
+
+                <div id="buttonDiv" style="margin: 0px auto; text-align: center;">
+                  <button title="Click this button to calculate the VAC." class="calcVAC" style="display: none;">Calculate VAC</button>
+                  <button title="Click here to start over." class="reset" style="display: none;">Start Over</button>
+                  <button title="Click this button to move on the the IVAC calculator" id="IVAC" style="display: none;">Go to IVAC</button>
+                  <button title="Click this button to calcute IVAC" class="IVACCalc" style="display: none;">Calculate IVAC</button>
+                  <button title="Click this button for an explanation of the resoning" id="explain" style="display: none;">Explain...</button>
+                  <button title="Click this button to move on to the PVAP determination" id="PVAP" style="display: none;">Go to PVAP</button>
+                </div>
+
+                <table id="theTable" style="display: none;">
+                  <tbody>
+                    <tr>
+                      <th scope="col" style="vertical-align: top;">
+                        <span title="Days the patient was on mechanical ventilation.  Day 1 is the first day the patient was intubated.">
+                          MV Day
+                        </span>
+                      </th>
+                      <th scope="col" style="vertical-align: top;">
+                        Date
+                      </th>
+                      <th scope="col" class="peepHeader" style="vertical-align: top;">
+                        <button title="Click this button to hide PEEP values." id="hidePeepCol" style="font-family: monospace; display: none;">
+                          Hide...
+                        </button>
+                        <span title="Positive End-Expiratory Pressure - Values typically  range from 0 to 15.">
+                          Min. PEEP<br>(cmH<sub>2</sub>O)
+                        </span>
+                      </th>
+                      <th scope="col" class="fio2Header" style="vertical-align: top;">
+                        <button title="Click this button to hide FiO2 values." id="hideFio2Col" style="font-family: monospace; display: none;">
+                          Hide...
+                        </button>
+                        <span title="Fraction of Inspired Oxygen">
+                          Min. FiO<sub>2</sub><br>(21 - 100)
+                        </span>
+                      </th>
+                      <th scope="col" class="vaeHeader" style="vertical-align: top;">
+                        <span title="If a ventilator associated event is determined, it will show up in this column.">
+                          VAE&nbsp;
+                        </span>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+
+              	<div class="" id="legendTable" style="display: none;">
+                	<div class="" style="background: none; vertical-align: top;">Legend: </div>
+                    <div class="" style="background: navajowhite; vertical-align: top;">† - VAE Window </div>
+                      <div class="" style="background: yellow; vertical-align: top;">‡ - VAE Date</div>
+                      <div class="" style="background: gray; vertical-align: top;">¶ - Qualifying
+                        Antimicrobial Day (QAD) </div>
+
+                </div>
+                <!--<TABLE id="legendTable" >
+                  <TBODY>
+                    <TR>
+                      <TD style="background: none; vertical-align: top;">Legend: </TD>
+                      <TD style="background: navajowhite; vertical-align: top;"> VAE Window </TD>
+                      <TD style="background: khaki; vertical-align: top;"> VAE Date</TD>
+                      <TD style="background: lightgray; vertical-align: top;"> Qualifying
+                        Antimicrobial Day (QAD)</TD>-->
+                      <!-- <td style="vertical-align:top; background:LightGray; ">VAE Window</td> -->
+                    <!--  <TD style="background: gray; vertical-align: top;"> Cumulative QAD </TD>
+                    </TR>
+                  </TBODY>
+                </TABLE>-->
+
+              <p id="peepLegend" style="display: none;">* All values of PEEP less than 5 cmH<sub>2</sub>O are
+                considered to be 5 cmH<sub>2</sub>O for purposes of the VAC definition.  So for
+                PEEP values entered as less than or equal to 5 cmH<sub>2</sub>O, an increase in
+                the daily minimum PEEP to at least 8 cmH<sub>2</sub>, sustained for 2 or more
+                calendar days, is required to meet the VAC definition. </p>
+              <div style="margin:0 auto; text-align:center;">
+                <!--<div id="buttonDivAtBottom" style="display: none;">
+                  <button title="Click this button to calculate the VAC." class="calcVAC">Calculate VAC</button>
+                  <button title="Click here to start over." class="reset">Start Over</button>
+                </div>-->
+              </div>
+              </div>
+              <p>
+                </p><div style="margin:0 auto; text-align:center;">
+                <hr>
+                  <button title="printScreen" id="myPrint">Print</button>
+                  <button title="Close Window" id="closeWindow" onclick="self.close();">Close</button>
+                </div>
+              <p></p>
+            </div>
+            <div id="explainBox">
+              <button title="Close" class="closeExplainBox" style="float: right;">X</button>
+              <p id="msg" style="color: rgb(88, 88, 88); font-family: Verdana, Geneva, sans-serif; font-size: 12px;">Message Box Error! </p>
+              <div style="margin:0 auto; text-align:center;">
+                <button title="Close It" class="closeExplainBox">OK</button>
+                <br>
+                <p style="color: rgb(88, 88, 88); font-family: Verdana, Geneva, sans-serif; font-size: 10px;">(Hint:
+                  this box is movable by dragging with your mouse.  If you move it to one side and
+                  leave it open, the explanation will automatically update itself as things
+                  change.) </p>
+              </div>
+            </div>
+            <div id="printBox"></div>
+            <div id="vapDiv">
+              <p id="vapTitle"></p>
+              <p id="vapBody">
+                <!-- Primary table for VAP determination -->
+              </p><table id="table1">
+                <tbody>
+                  <tr>
+                    <th scope="col">Question</th>
+                    <th scope="col"> Yes</th>
+                  </tr>
+                  <tr class="vapRow1">
+                    <td class="pvapCondition"> Criterion 1. Positive culture of one of the
+                      following (without requirement for purulent respiratory secretions):
+                      <ul>
+                        <li>Endotracheal aspirate ≥ 10<sup>5</sup> cfu/ml*</li>
+                        <li>Bronchoalveolar lavage ≥ 10<sup>4</sup> cfu/ml* </li>
+                        <li>Lung tissue ≥ 10<sup>4</sup> cfu/ml*</li>
+                        <li>Protected specimen brush ≥ 10<sup>3</sup> cfu/ml*</li>
+                      </ul>
+                      *or
+                      corresponding semi-quantitative result </td>
+                    <td class="pVap" id="purulentInput"><input tabindex="1" class="cb2" type="checkbox" aria-label="Criterion 1">
+                  </td></tr>
+                  <!--<tr> <td style="text-align: center" colspan="2">OR</td></tr>-->
+                  <tr class="vapRow1">
+                    <td class="pvapCondition"> Criterion 2. Positive culture of one of
+                      the following (qualitative or quantitative/semi-quantitative culture
+                      without sufficient growth to meet Criterion 1).
+                      <ul>
+                        <li>Sputum</li>
+                        <li>Endotracheal aspirate</li>
+                        <li>Bronchoalveolar lavage</li>
+                        <li>Lung tissue</li>
+                        <li>Protected specimen brush</li>
+                      </ul>
+                      <b>AND</b>
+                      <p>Evidence of purulent respiratory secretions (defined as secretions from
+                        lungs, bronchi or trachea that contain ≥ 25 neutrophils and ≤ 10 squamous
+                        epithelial cells). </p></td>
+                    <td class="pVap"><input tabindex="1" class="cb2" type="checkbox" aria-label="Criterion 2">
+                  </td></tr>
+                  <!--<tr> <td colspan="2" style="text-align: center" >OR</td></tr>-->
+                  <tr class="vapRow1">
+                    <td class="pvapCondition"> Criterion 3. One of the following
+                      positive tests (as outlined in the protocol):
+                      <ul>
+                        <li>Pleural fluid culture</li>
+                        <li>Lung histopathology</li>
+                        <li>Diagnostic test for <i>Legionella</i> species</li>
+                        <li>Diagnostic test for influenza virus, respiratory syncytial virus,
+                          adenovirus, parainfluenza virus, rhinovirus, human metapneumovirus or
+                          coronavirus. </li>
+                      </ul></td>
+                    <td class="pVap"><input tabindex="1" class="cb2" type="checkbox" aria-label="Criterion 3">
+                  </td></tr>
+                </tbody>
+              </table>
+              <br>
+              <div style="margin:0 auto; text-align:center;">
+                <button title="Click this button to calculate Possible VAP." id="calcPVAP" style="display: none;">Calculate
+                PVAP</button>
+                <button title="Next IVAC Candidate" id="nextIVAC" style="display: none;">Next</button>
+                <button title="Cancel" id="cancelPVAP" style="display: none;">Close</button>
+                <br>
+              </div>
+              <p></p>
+            </div>
+            <div id="content-secondary">
+              <!-- begin editable -->
+              <!--  // This area is optional
+									// All content in the Right Column (except for Page Option links and GovD) will be moved to the Persistent Content Area upon migration
+									-->
+              <!-- /end editable -->
+            </div>
+            <!-- /end #content-secondary -->
+          </div>
+          <!-- /end #contentArea -->
+        </div>
+        <!-- /end #body -->
+      </div>
+      <!-- left nav included after content on pages where it doesn't display -->
+      <nav id="left" class="hidden-one hidden-two hidden-three hidden-four">
+        <!--#include virtual="/TemplatePackage/3.0/local/includes/leftNav.html" -->
+      </nav>
+      <div class="row">
+        <div class="span24 visible-one">
+          <!--BEGIN PAGE OPTIONS - FOR DEMO PURPOSES ONLY - REMOVE INCLUDES BEFORE TEMPLATE USE. The markup in this region for page format & languages will be generated by the CMS via editorial options. -->
+          <!--include virtual="/TemplatePackage/3.0/local/includes/pageOptionsFormatBottom.html" -->
+          <!--include virtual="/TemplatePackage/3.0/local/includes/pageOptionsLanguagesBottom.html" -->
+          <!-- END PAGE OPTIONS -->
+        </div>
+      </div>
+
+      <!-- date stamp -->
+      <div id="datestamp" class="row" itemscope="itemscope" itemtype="https://schema.org/WebPage">
+        <div class="span24">
+          <ul>
+            <li class="last-reviewed">Page last reviewed:<span itemprop="lastReviewed">February 5, 2019</span></li>
+            <li class="last-updated">Page last updated:<span itemprop="dateModified">February 5, 2019</span></li>
+            <li class="content-source">Content source:
+              <ul>
+                <!--DateStamp-->
+                <li itemprop="sourceOrganization" itemscope="itemscope" itemtype="https://schema.org/Organization"> <a href="https://www.cdc.gov/" itemprop="url">Centers for Disease Control and Prevention</a>,&nbsp; </li>
+                <!--contentSource.html -->
+                <li itemprop="sourceOrganization" itemscope="itemscope" itemtype="https://schema.org/Organization"><a href="https://www.cdc.gov/" itemprop="url">Centers for Disease Control and Prevention</a><br>
+                  <a href="https://www.cdc.gov/ncezid/dw-index.html">National Center for Emerging and Zoonotic Infectious Diseases (NCEZID)</a><br>
+                  <a href="https://www.cdc.gov/ncezid/dhqp/index.html">Division of Healthcare Quality Promotion (DHQP)</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /end #content -->
+  </div>
+  <!-- / end .container -->
+  <!-- footer -->
+  <footer class="cdcSlimFooter" id="footer">
+    <!--<DIV class="socialMedia">
+      <DIV class="container">
+
+      </DIV>
+    </DIV>-->
+    <div class="container" style="width:auto;">
+      <div class="cdcLinks">
+        <div class="container">
+          <ul>
+            <li>
+              <nav>
+                <!--<H6 class="hidden-four hidden-three hidden-two hidden-one">ABOUT <SPAN class="icon-plus visible-one pull-right"></SPAN></H6>-->
+                <ul class="">
+                  <li><a href="https://www.cdc.gov/about/default.htm">About CDC</a></li>
+                  <li><a href="https://jobs.cdc.gov/">Jobs</a></li>
+                  <li><a href="https://www.cdc.gov/funding/">Funding</a></li>
+                </ul>
+              </nav>
+            </li>
+            <li>
+              <nav>
+                <!--<H6 class="hidden-four hidden-three hidden-two hidden-one">LEGAL <SPAN class="icon-plus visible-one pull-right"></SPAN></H6>-->
+                <ul class="">
+                  <li><a href="https://www.cdc.gov/Other/policies.html">Policies</a></li>
+                  <li><a href="https://www.cdc.gov/Other/privacy.html">Privacy</a></li>
+                  <li><a href="https://www.cdc.gov/od/foia/">FOIA</a></li>
+                  <li><a href="https://www.cdc.gov/eeo/nofearact/index.htm">No Fear Act</a></li>
+                  <li><a class="no-link" href="https://oig.hhs.gov/">OIG</a></li>
+                </ul>
+              </nav>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="cdcContact">
+        <div class="container">
+          <ul>
+            <li class="local-contact">
+              <section>
+                <address class="address" itemtype="https://www.schema.org/Organization" itemscope="itemscope">
+                    <span class="value" itemtype="https://www.schema.org/PostalAddress" itemscope="itemscope" itemprop="address">
+                    <span itemprop="streetAddress">1600 Clifton Road</span>
+                    <span itemprop="addressLocality">Atlanta</span>,
+                    <span itemprop="addressRegion">GA</span> <span itemprop="postalCode">30329-4027</span>
+                    <span itemprop="addressCountry">USA</span> </span><br>
+                    <span class="value" itemprop="telephone">800-CDC-INFO (800-232-4636)</span>,
+                    <span class="value" itemprop="telephone">TTY: 888-232-6348</span><br>
+                    <span class="value" itemtype="https://www.schema.org/ContactPoint" itemscope="itemscope" itemprop="contactPoint">
+                        <span itemprop="url"><a class=" default no-link" href="https://wwwn.cdc.gov/dcs/RequestForm.aspx">Email CDC-INFO</a></span> </span>
+                </address>
+              </section>
+            </li>
+            <li class="contact">
+              <section>
+                <address class="address" itemtype="https://www.schema.org/Organization" itemscope="itemscope">
+                    <span class="value" itemtype="https://www.schema.org/ContactPoint" itemscope="itemscope" itemprop="contactPoint">
+                        <span itemprop="url"><a class="no-link" href="https://www.hhs.gov/">U.S. Department of Health &amp; Human Services</a></span> </span><br>
+                    <span class="value" itemtype="https://www.schema.org/ContactPoint" itemscope="itemscope" itemprop="contactPoint">
+                    <span itemprop="url"><a class="no-link" href="https://www.hhs.gov/open/">HHS/Open</a></span> </span><br>
+                    <span class="value" itemtype="https://www.schema.org/ContactPoint" itemscope="itemscope" itemprop="contactPoint">
+                        <span itemprop="url"><a class="no-link" href="https://www.usa.gov/">USA.gov</a></span> </span>
+                </address>
+              </section>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- /#footer -->
+  <div id="totop" class="off visible-one">TOP</div>
+</div>
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div></body>
+
+</html>
